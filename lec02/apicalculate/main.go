@@ -9,7 +9,7 @@ import (
 type Object struct {
 	Number1 float64 `json:"number_1"`
 	Number2 float64 `json:"number_2"`
-	Expression string `json: "expression"`
+	Expression string `json:"expression"`
 
 }
 func handlerPost(w http.ResponseWriter, r *http.Request){
