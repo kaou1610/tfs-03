@@ -42,5 +42,5 @@ func calculate(o *Object) (float64, error)  {
 }
 
 func main()  {
-	
+	http.HandleFunc("/plus", handlerPost)
 }
