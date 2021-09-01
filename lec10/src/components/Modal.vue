@@ -12,11 +12,6 @@
 
 export default ({
     name: "Modal",
-    props: {
-        value: {
-            required: true
-        }
-    },
     methods: {
         close() {
             this.$emit('close')

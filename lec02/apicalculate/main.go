@@ -3,44 +3,41 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 )
 
 type Object struct {
-	Number1 float64 `json:"number_1"`
-	Number2 float64 `json:"number_2"`
-	Expression string `json:"expression"`
-
+	Number1     float64 `json:"number1"`
+	Number2     float64 `json:"number2"`
+	Expresstion string  `json:"expression"`
 }
-func handlerPost(w http.ResponseWriter, r *http.Request){
+
+func Calculate(w http.ResponseWriter, r *http.Request) {
 	var o Object
 	err := json.NewDecoder(r.Body).Decode(&o)
-	if err!= nil {
-		http.Error(w, "Error", http.StatusBadRequest)
+	if err != nil {
+		http.Error(w, "Err", http.StatusBadRequest)
 		return
 	}
-	result, err := calculate(&o)
-	if err!=nil {
-		fmt.Fprintf(w, "%v", err.Error())
-		return
+	var result float64
+	switch o.Expresstion {
+	case "+":
+		result = o.Number1 + o.Number2
+	case "-":
+		result = o.Number1 - o.Number2
+	case "*":
+		result = o.Number1 * o.Number2
+	case "/":
+		result = o.Number1 / o.Number2
+	default:
+		result = 0
 	}
 	fmt.Fprintf(w, "%v", result)
+	
 }
 
-func calculate(o *Object) (float64, error)  {
-	switch o.Expression {
-	case "+":
-		return o.Number1 + o.Number2, nil
-	case "-":
-		return o.Number1 + o.Number2, nil
-	case "*":
-		return o.Number1 + o.Number2, nil
-	case "/":
-		return o.Number1 + o.Number2, nil
-	}
-	return 0, nil
-}
-
-func main()  {
-	http.HandleFunc("/plus", handlerPost)
+func main() {
+	http.HandleFunc("/cal", Calculate)
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }

@@ -28,23 +28,22 @@ func MergeSort(arr []int) []int {
 
 func Merge(left, right []int) []int {
 
-	n, i, j := len(left)+len(right), 0, 0
-	arr := make([]int, n, n)
-
-	for k := 0; k < n; k++ {
-		if i > len(left)-1 && j <= len(right)-1 {
-			arr[k] = right[j]
-			j++
-		} else if j > len(right)-1 && i <= len(left)-1 {
-			arr[k] = left[i]
-			i++
-		} else if left[i] < right[j] {
-			arr[k] = left[i]
+	i, j :=  0, 0
+	arr := []int{}
+	for i < len(left) && j <len(right) {
+		if left[i] < right[j] {
+			arr = append(arr, left[i])
 			i++
 		} else {
-			arr[k] = right[j]
+			arr = append(arr, right[j])
 			j++
 		}
+	}
+	for ; i < len(left); i++ {
+		arr = append(arr, left[i])
+	}
+	for ; j < len(right); j++ {
+		arr = append(arr, right[j])
 	}
 	return arr
 }
