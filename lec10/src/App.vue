@@ -2,18 +2,18 @@
   <div id="app">
     <div class="container">
       <img src="./assets/image/head.png" alt="image">
-      <ComponentApp msg="Order Summary"/>
+      <OrderSummary msg="Order Summary"/>
     </div>
   </div>
 </template>
 
 <script>
-import ComponentApp from './components/ComponentApp.vue'
+import OrderSummary from './components/OrderSummary.vue'
 
 export default {
   name: 'App',
   components: {
-    ComponentApp
+    OrderSummary
   }
 }
 </script>

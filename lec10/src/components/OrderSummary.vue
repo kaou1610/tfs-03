@@ -1,5 +1,5 @@
 <template>
-  <div class="component-app">
+  <div class="order-summary">
     <h1>{{ msg }}</h1>
     <p class="intro">{{intro}}</p>
     <span class="content">
@@ -27,7 +27,7 @@
 <script>
 import Modal from './Modal.vue'
 export default {
-  name: 'ComponentApp',
+  name: 'OrderSummary',
   props: {
     msg: String
   },
